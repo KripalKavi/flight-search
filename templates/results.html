@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>✈️ Flight Search Results</h1>
+
+        <div class="search-summary">
+            <p><strong>Route:</strong> {{ search_params.origin }} → {{ search_params.destination }}</p>
+            <p><strong>Dates:</strong> {{ search_params.depart_date }} to {{ search_params.return_date }}</p>
+            <p><strong>Passengers:</strong> {{ search_params.adults }} adult(s){% if search_params.children > 0 %}, {{ search_params.children }} child(ren){% endif %}</p>
+        </div>
+
+        <div class="results-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Source</th>
+                        <th>Economy</th>
+                        <th>Premium Economy</th>
+                        <th>Business</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                    <tr>
+                        <td class="source-name">{{ result.source }}</td>
+                        <td class="price-cell">
+                            {% if result.economy.available %}
+                                <div class="price">${{ "{:,}".format(result.economy.price) }}</div>
+                                <div class="currency">{{ result.economy.currency }}</div>
+                            {% else %}
+                                <span class="unavailable">N/A</span>
+                            {% endif %}
+                        </td>
+                        <td class="price-cell">
+                            {% if result.premium_economy.available %}
+                                <div class="price">${{ "{:,}".format(result.premium_economy.price) }}</div>
+                                <div class="currency">{{ result.premium_economy.currency }}</div>
+                            {% else %}
+                                <span class="unavailable">N/A</span>
+                            {% endif %}
+                        </td>
+                        <td class="price-cell">
+                            {% if result.business.available %}
+                                <div class="price">${{ "{:,}".format(result.business.price) }}</div>
+                                <div class="currency">{{ result.business.currency }}</div>
+                            {% else %}
+                                <span class="unavailable">N/A</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="actions">
+            <a href="/" class="back-button">← New Search</a>
+        </div>
+
+        <div class="disclaimer">
+            <p><strong>Note:</strong> Prices are estimates based on web scraping and may not reflect current availability.
+            Please verify prices on the source website before booking.</p>
+        </div>
+    </div>
+</body>
+</html>

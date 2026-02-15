@@ -1,0 +1,11 @@
+{
+  "headless_browser": true,
+  "timeout": 45,
+  "default_currency": "USD",
+  "sources": ["kayak"],
+  "retry_attempts": 2,
+  "logging": {
+    "log_file": "search_log.json",
+    "console_output": true
+  }
+}

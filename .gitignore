@@ -1,0 +1,38 @@
+# Configuration files with API keys (if added later)
+api_config.json
+
+# Logs and runtime data
+search_log.json
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Flask
+instance/
+.webassets-cache
+
+# Selenium
+geckodriver.log
+chromedriver.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

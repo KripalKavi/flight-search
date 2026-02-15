@@ -1,0 +1,8 @@
+# Flask web framework
+Flask>=3.0.0
+
+# Web scraping
+selenium>=4.16.0
+
+# ChromeDriver (automatic installation)
+webdriver-manager>=4.0.1
