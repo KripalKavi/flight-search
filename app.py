@@ -38,7 +38,7 @@ def search():
         adults = int(request.form.get('adults', 1))
         children = int(request.form.get('children', 0))
 
-        log(f"Search request: {origin} → {destination}, {depart_date} to {return_date}")
+        log(f"Search request: {origin} -> {destination}, {depart_date} to {return_date}")
 
         # Load config
         config = load_config()
