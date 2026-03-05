@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Dict, List
 from datetime import datetime
+import logging
 
 class BaseScraper(ABC):
     """Abstract base class for flight scrapers"""
@@ -8,6 +9,7 @@ class BaseScraper(ABC):
     def __init__(self, config: dict):
         self.config = config
         self.source_name = "Unknown"
+        self.logger = logging.getLogger('flight_search')
 
     @abstractmethod
     def search_flights(self, origin: str, destination: str,
@@ -33,5 +35,4 @@ class BaseScraper(ABC):
         return date_obj.strftime("%m/%d/%Y")
 
     def log(self, message: str):
-        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        print(f"[{timestamp}] [{self.source_name}] {message}")
+        self.logger.info(f"[{self.source_name}] {message}")

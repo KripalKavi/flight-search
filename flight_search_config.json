@@ -1,5 +1,5 @@
 {
-  "headless_browser": true,
+  "headless_browser": false,
   "timeout": 45,
   "default_currency": "USD",
   "sources": ["kayak"],

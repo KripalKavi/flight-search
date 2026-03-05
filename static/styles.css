@@ -179,10 +179,94 @@ tr:hover {
     margin-top: 2px;
 }
 
+.airline-info {
+    font-size: 13px;
+    color: #555;
+    margin-top: 8px;
+    padding: 4px 8px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 4px;
+    display: inline-block;
+    font-weight: 500;
+}
+
 .unavailable {
     color: #999;
     font-style: italic;
     font-size: 14px;
+}
+
+/* Best Deal Highlighting */
+.best-deal {
+    position: relative;
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%) !important;
+    border: 3px solid #ff9800;
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+}
+
+.best-deal-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.best-deal-summary {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+    border: 2px solid #ff9800;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.best-deal-summary h3 {
+    color: #e65100;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.highlight-price {
+    font-size: 24px;
+    font-weight: 700;
+    color: #e65100;
+}
+
+.stops-badge {
+    display: inline-block;
+    background: rgba(0,0,0,0.1);
+    padding: 4px 10px;
+    border-radius: 8px;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+/* Stops Information */
+.stops-info {
+    font-size: 13px;
+    color: #666;
+    margin-top: 6px;
+    padding: 3px 8px;
+    background: rgba(0,0,0,0.05);
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.stops-info.nonstop {
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+/* Preserve best-deal styling on hover */
+tr:hover .best-deal {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%) !important;
 }
 
 .actions {

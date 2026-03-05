@@ -16,6 +16,23 @@
             <p><strong>Passengers:</strong> {{ search_params.adults }} adult(s){% if search_params.children > 0 %}, {{ search_params.children }} child(ren){% endif %}</p>
         </div>
 
+        {% if best_deal_info %}
+        <div class="best-deal-summary">
+            <h3>🏆 Best Deal Found</h3>
+            <p>
+                <strong>{{ best_deal_info.cabin_class.replace('_', ' ').title() }}</strong> -
+                <span class="highlight-price">
+                    {% if best_deal_info.get('currency') == 'miles' %}
+                        {{ "{:,}".format(best_deal_info.price) }} miles
+                    {% else %}
+                        ${{ "{:,}".format(best_deal_info.price) }}
+                    {% endif %}
+                </span>
+                <span class="stops-badge">{{ best_deal_info.stops_display }}</span>
+            </p>
+        </div>
+        {% endif %}
+
         <div class="results-table">
             <table>
                 <thead>
@@ -30,26 +47,77 @@
                     {% for result in results %}
                     <tr>
                         <td class="source-name">{{ result.source }}</td>
-                        <td class="price-cell">
+                        <td class="price-cell {% if result.economy.is_best_deal %}best-deal{% endif %}">
                             {% if result.economy.available %}
-                                <div class="price">${{ "{:,}".format(result.economy.price) }}</div>
+                                {% if result.economy.is_best_deal %}
+                                    <span class="best-deal-badge">🏆 Best Deal</span>
+                                {% endif %}
+                                <div class="price">
+                                    {% if result.economy.currency == 'miles' %}
+                                        {{ "{:,}".format(result.economy.price) }} miles
+                                    {% else %}
+                                        ${{ "{:,}".format(result.economy.price) }}
+                                    {% endif %}
+                                </div>
                                 <div class="currency">{{ result.economy.currency }}</div>
+                                <div class="airline-info">✈️ {{ result.economy.airline }}</div>
+                                {% if result.economy.stops is not none %}
+                                    <div class="stops-info {% if result.economy.stops == 0 %}nonstop{% endif %}">
+                                        {{ result.economy.stops_display }}
+                                    </div>
+                                {% else %}
+                                    <div class="stops-info">Stops: Not available</div>
+                                {% endif %}
                             {% else %}
                                 <span class="unavailable">N/A</span>
                             {% endif %}
                         </td>
-                        <td class="price-cell">
+                        <td class="price-cell {% if result.premium_economy.is_best_deal %}best-deal{% endif %}">
                             {% if result.premium_economy.available %}
-                                <div class="price">${{ "{:,}".format(result.premium_economy.price) }}</div>
+                                {% if result.premium_economy.is_best_deal %}
+                                    <span class="best-deal-badge">🏆 Best Deal</span>
+                                {% endif %}
+                                <div class="price">
+                                    {% if result.premium_economy.currency == 'miles' %}
+                                        {{ "{:,}".format(result.premium_economy.price) }} miles
+                                    {% else %}
+                                        ${{ "{:,}".format(result.premium_economy.price) }}
+                                    {% endif %}
+                                </div>
                                 <div class="currency">{{ result.premium_economy.currency }}</div>
+                                <div class="airline-info">✈️ {{ result.premium_economy.airline }}</div>
+                                {% if result.premium_economy.stops is not none %}
+                                    <div class="stops-info {% if result.premium_economy.stops == 0 %}nonstop{% endif %}">
+                                        {{ result.premium_economy.stops_display }}
+                                    </div>
+                                {% else %}
+                                    <div class="stops-info">Stops: Not available</div>
+                                {% endif %}
                             {% else %}
                                 <span class="unavailable">N/A</span>
                             {% endif %}
                         </td>
-                        <td class="price-cell">
+                        <td class="price-cell {% if result.business.is_best_deal %}best-deal{% endif %}">
                             {% if result.business.available %}
-                                <div class="price">${{ "{:,}".format(result.business.price) }}</div>
+                                {% if result.business.is_best_deal %}
+                                    <span class="best-deal-badge">🏆 Best Deal</span>
+                                {% endif %}
+                                <div class="price">
+                                    {% if result.business.currency == 'miles' %}
+                                        {{ "{:,}".format(result.business.price) }} miles
+                                    {% else %}
+                                        ${{ "{:,}".format(result.business.price) }}
+                                    {% endif %}
+                                </div>
                                 <div class="currency">{{ result.business.currency }}</div>
+                                <div class="airline-info">✈️ {{ result.business.airline }}</div>
+                                {% if result.business.stops is not none %}
+                                    <div class="stops-info {% if result.business.stops == 0 %}nonstop{% endif %}">
+                                        {{ result.business.stops_display }}
+                                    </div>
+                                {% else %}
+                                    <div class="stops-info">Stops: Not available</div>
+                                {% endif %}
                             {% else %}
                                 <span class="unavailable">N/A</span>
                             {% endif %}
