@@ -32,6 +32,11 @@ chromedriver.log
 *.swo
 *~
 
+# Debug screenshots
+*_debug.png
+*_initial.png
+*_modal.png
+
 # OS files
 .DS_Store
 Thumbs.db
